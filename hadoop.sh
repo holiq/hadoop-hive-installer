@@ -58,6 +58,16 @@ cat > core-site.xml <<EOF
     <name>fs.defaultFS</name>
     <value>hdfs://localhost:9000</value>
   </property>
+
+  <property>
+    <name>hadoop.proxyuser.holiq.groups</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.proxyuser.holiq.hosts</name>
+    <value>*</value>
+  </property>
 </configuration>
 EOF
 
