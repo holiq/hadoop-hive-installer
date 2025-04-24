@@ -2,7 +2,7 @@
 
 set -e
 
-HIVE_DIR=/media/holiq/disk_ssd/Linux #/media/holiq/disk_ssd/Linux/hive_linux
+HIVE_DIR=/usr/local
 HIVE_NAME=hive
 HIVE_VERSION=4.0.1
 HIVE_HOME=${HIVE_DIR}/${HIVE_NAME}

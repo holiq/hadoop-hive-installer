@@ -132,6 +132,8 @@ EOF
 
 # Set JAVA_HOME in hadoop-env.sh
 sed -i 's|^# export JAVA_HOME=.*|export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64|' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+# Add this if yarn not started and use java 11 above on bottom of hadoop-env.sh
+# export HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED"
 
 echo -e "\n[SUCCESS] Hadoop ${HADOOP_VERSION} has been installed and configured successfully!"
 echo -e "Next Steps:"
