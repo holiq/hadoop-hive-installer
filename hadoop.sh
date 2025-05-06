@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Update system
-sudo apt update && sudo apt upgrade -y
+# sudo apt update && sudo apt upgrade -y
 
 # Install Java (OpenJDK 11)
-sudo apt install -y openjdk-11-jdk wget ssh
+# sudo apt install -y openjdk-11-jdk wget ssh
 
 # Setup Java environment
-echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.zshrc
+echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> ~/.zshrc
 echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> ~/.zshrc
 
 # Create Hadoop user (optional)
@@ -16,7 +16,7 @@ echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> ~/.zshrc
 # su - hadoopuser
 
 # Variables
-HADOOP_DIR=/usr/local
+HADOOP_DIR=/media/holiq/disk_ssd/Linux
 HADOP_NAME=hadoop
 HADOOP_VERSION=3.4.1
 HADOOP_HOME=${HADOOP_DIR}/${HADOP_NAME}
@@ -131,7 +131,7 @@ cat > yarn-site.xml <<EOF
 EOF
 
 # Set JAVA_HOME in hadoop-env.sh
-sed -i 's|^# export JAVA_HOME=.*|export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64|' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+sed -i 's|^# export JAVA_HOME=.*|export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64|' $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 # Add this if yarn not started and use java 11 above on bottom of hadoop-env.sh
 # export HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED"
 
