@@ -2,7 +2,7 @@
 
 set -e
 
-HIVE_DIR=/media/holiq/disk_ssd/Linux
+HIVE_DIR=/usr/local
 HIVE_NAME=hive
 HIVE_VERSION=3.1.2
 HIVE_HOME=${HIVE_DIR}/${HIVE_NAME}
@@ -41,7 +41,7 @@ fi
 sudo chown -R $(whoami):$(whoami) "$HIVE_HOME"
 
 # Set environment variables
-cat <<EOF >> ~/.zshrc
+cat <<EOF >> ~/.bashrc
 
 # Hive Environment Variables
 export HIVE_HOME=$HIVE_HOME
@@ -86,12 +86,17 @@ cat > "$HIVE_HOME/conf/hive-site.xml" <<EOF
 </configuration>
 EOF
 
+wget https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.4.0.tar.gz
+
+tar -xzvf mysql-connector-j-8.4.0.tar.gz
+
+sudo cp mysql-connector-j-8.4.0/mysql-connector-j-8.4.0.jar "$HIVE_HOME/lib/"
+
 echo -e "\n[SUCCESS] Hive ${HIVE_VERSION} has been installed and configured successfully!"
 echo -e "Next Steps:"
-echo -e "- Run 'source ~/.zshrc' or open a new terminal to load Hive environment."
+echo -e "- Run 'source ~/.bashrc' or open a new terminal to load Hive environment."
 echo -e "- Start MySQL server and create a database named 'metastore'."
 echo -e "- Create a user 'hive' with password 'hivepassword' and grant all privileges on the 'metastore' database."
-echo -e "- Download MySQL Connector/J and place it in the Hive lib directory. (https://downloads.mysql.com/archives/c-j/)"
 echo -e "- Initialize the Hive metastore with: schematool -initSchema -dbType mysql"
 echo -e "- Start HiveServer2 with: hive --service hiveserver2"
 echo -e "- Start Hive shell with: hive"
